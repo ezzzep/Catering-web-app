@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    crossorigin="anonymous" />
+  <title>{% block title %}Home{% endblock %}</title>
+
+  <style>
+    .navbar-nav .nav-link {
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    .navbar-nav .nav-link::after {
+      content: "";
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      left: 0;
+      bottom: 0;
+      background-color: black;
+      transition: width 0.3s ease;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: #000;
+    }
+
+    .navbar-nav .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .bottom-menu {
+      position: fixed;
+      bottom: -100%;
+      left: 0;
+      width: 100%;
+      background: #fff;
+      box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.2);
+      transition: bottom 0.3s ease;
+      z-index: 1050;
+      border-top-left-radius: 1rem;
+      border-top-right-radius: 1rem;
+      max-height: 50%;
+      overflow-y: auto;
+    }
+
+    .bottom-menu.show {
+      bottom: 0;
+    }
+
+    .menu-content {
+      padding: 1rem 0.5rem;
+    }
+
+    .menu-content a {
+      font-size: 1.25rem;
+      padding: 0.75rem 0;
+    }
+
+    .navbar-logo {
+      max-width: 80px;
+      height: auto;
+    }
+
+    .footer-img {
+      max-width: 300px;
+      height: auto;
+    }
+
+    /* Mobile footer fixes */
+    @media (max-width: 768px) {
+      .footer-img {
+        display: none !important;
+      }
+
+      .row.justify-content-md-end.text-center.text-md-end {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .row.justify-content-md-end.text-center.text-md-end .flex-column {
+        margin-bottom: 1rem;
+        text-align: center;
+      }
+
+      .row.justify-content-md-end.text-center.text-md-end h5 {
+        margin-bottom: 0.75rem;
+      }
+
+      .row.mt-4.align-items-start {
+        text-align: center;
+      }
+
+      .row.mt-4.align-items-start .col-12 {
+        margin-bottom: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white px-5">
+    <a class="navbar-brand" href="/">
+      <img src="{{ url_for('static', filename='image/icon.png') }}" alt="Logo" width="80" height="80"
+        class="d-inline-block align-top">
+    </a>
+    <button class="navbar-toggler d-lg-none" type="button" id="menuToggle">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse d-none d-lg-block" id="navbarNavDropdown">
+      <ul class="navbar-nav ml-auto align-items-center">
+        {% if current_user.is_authenticated %}
+        {% if current_user.is_admin %}
+        <li class="nav-item">
+          <a class="nav-link text-dark px-4 fs-3" href="{{ url_for('auth.reservation') }}">All Reservations</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-dark px-4 fs-3 d-flex align-items-center" href="#" id="userDropdown"
+            role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="fw-bolder me-2">Account</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+            <a class="dropdown-item" href="{{ url_for('auth.profile') }}">Profile</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item text-danger" href="{{ url_for('auth.logout') }}">Logout</a>
+          </div>
+        </li>
+        {% else %}
+        <li class="nav-item"><a class="nav-link text-dark px-4 fs-3 fw-bolder" href="/">Home</a></li>
+        <li class="nav-item"><a class="nav-link text-dark px-4 fs-3" href="/services">Services</a></li>
+        <li class="nav-item"><a class="nav-link text-dark px-4 fs-3" href="/contact">Contact</a></li>
+        <li class="nav-item"><a class="nav-link text-dark px-4 fs-3" href="/about-us">About Us</a></li>
+        <li class="nav-item"><a class="nav-link text-dark px-4 fs-3"
+            href="{{ url_for('auth.reservation') }}">Reservation</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-dark px-4 fs-3 d-flex align-items-center" href="#" id="userDropdown"
+            role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="fw-bolder me-2">Account</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+            <a class="dropdown-item" href="{{ url_for('auth.profile') }}">Profile</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item text-danger" href="{{ url_for('auth.logout') }}">Logout</a>
+          </div>
+        </li>
+        {% endif %}
+        {% else %}
+        <a class="nav-item nav-link text-dark px-4 fs-3 fw-bolder" href="/">Home</a>
+        <a class="nav-item nav-link text-dark px-4 fs-3" href="/services">Services</a>
+        <a class="nav-item nav-link text-dark px-4 fs-3" href="/contact">Contact</a>
+        <a class="nav-item nav-link text-dark px-4 fs-3" href="/about-us">About Us</a>
+        <a class="nav-item nav-link text-dark px-4 fs-3" href="/reservation">Reservation</a>
+        <li class="nav-item"><a class="nav-link text-dark px-4 fs-3" href="/sign-up">Sign Up</a></li>
+        <li class="nav-item"><a class="btn btn-outline-dark px-4 fs-4 ml-3" href="/login">Login</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
+
+  <div id="bottomMenu" class="bottom-menu d-lg-none">
+    <div class="menu-content text-center">
+      <a href="/" class="d-block py-3 text-dark">Home</a>
+      <a href="/services" class="d-block py-3 text-dark">Services</a>
+      <a href="/contact" class="d-block py-3 text-dark">Contact</a>
+      <a href="/about-us" class="d-block py-3 text-dark">About Us</a>
+      <a href="/reservation" class="d-block py-3 text-dark">Reservation</a>
+      <a href="/login" class="btn btn-dark btn-lg my-3">Login</a>
+    </div>
+  </div>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+  {% for category, message in messages %}
+  {% if category == 'error' %}
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    {{ message }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  {% else %}
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    {{ message }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  {% endif %}
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+
+  <div class="container">{% block content %} {% endblock %}</div>
+
+
+  <footer class="text-dark mt-5">
+    <div class="container-fluid py-4">
+      <div class="row mb-4">
+        <div class="col-12 text-center">
+          <p class="mb-0 fs-4"></p>
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-md-5 col-12 px-5 text-center text-md-start mb-4 mb-md-0">
+          <img src="{{ url_for('static', filename='image/footer.png') }}" alt="Angelic Catering"
+            class="img-fluid footer-img">
+        </div>
+        <div class="col-md-6 col-12 px-5">
+          <div class="row justify-content-md-end text-center text-md-end">
+            <div class="flex-column">
+              <h5 class="mb-4"><a href="/" class="text-dark footer-link fs-1">Home</a></h5>
+              <h5><a href="/contact" class="text-dark footer-link fs-1">Contact</a></h5>
+            </div>
+            <div class="d-none d-md-block col-2"></div>
+            <div class="flex-column">
+              <h5 class="mb-4"><a href="/services" class="text-dark footer-link fs-1">Services</a></h5>
+              <h5><a href="/about-us" class="text-dark footer-link fs-1">About Us</a></h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-4 align-items-start">
+        <div class="col-12 col-md-6 text-center text-md-start mb-3 mb-md-0">
+          <p class="mb-2 fs-4">J. Romero Rd., Bagacay, Dumaguete City, Philippines</p>
+        </div>
+      <div class="col-12 col-md-5 text-right text-md-end">
+        <p class="mb-0 fs-5">
+          &copy; 2025 Angelic - Ann Foodhaus & Catering Services<br>
+          All Rights Reserved.
+        </p>
+      </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const bottomMenu = document.getElementById('bottomMenu');
+    menuToggle.addEventListener('click', () => {
+      bottomMenu.classList.toggle('show');
+    });
+    document.querySelectorAll('#bottomMenu a').forEach(link => {
+      link.addEventListener('click', () => {
+        bottomMenu.classList.remove('show');
+      });
+    });
+  </script>
+</body>
+
+</html>

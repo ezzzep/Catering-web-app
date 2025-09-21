@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width: 500px;">
+    <h2 class="text-center mb-4">Account</h2>
+
+    <div class="card shadow p-4">
+        <p><strong>First Name:</strong> {{ user.first_name }}</p>
+        <p><strong>Last Name:</strong> {{ user.last_name }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+
+        <form method="POST" action="{{ url_for('auth.change_password') }}">
+            <div class="mb-3">
+                <label for="current_password" class="form-label">Current Password</label>
+                <div class="input-group">
+                    <input type="password" class="form-control" id="current_password" name="current_password" required>
+                    <button class="btn btn-outline-secondary" type="button"
+                        onclick="togglePassword('current_password')">
+                        👁
+                    </button>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="new_password" class="form-label">New Password</label>
+                <div class="input-group">
+                    <input type="password" class="form-control" id="new_password" name="new_password" required>
+                    <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('new_password')">
+                        👁
+                    </button>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="confirm_password" class="form-label">Confirm New Password</label>
+                <div class="input-group">
+                    <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+                    <button class="btn btn-outline-secondary" type="button"
+                        onclick="togglePassword('confirm_password')">
+                        👁
+                    </button>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-outline-primary w-100 mb-3">Change Password</button>
+        </form>
+
+        <form method="POST" action="{{ url_for('auth.delete_account') }}">
+            <button type="submit" class="btn btn-outline-danger w-100"
+                onclick="return confirm('Are you sure you want to delete your account? This action cannot be undone.');">
+                Delete Account
+            </button>
+        </form>
+    </div>
+</div>
+
+<script>
+    function togglePassword(fieldId) {
+        const field = document.getElementById(fieldId);
+        field.type = field.type === "password" ? "text" : "password";
+    }
+</script>
+{% endblock %}

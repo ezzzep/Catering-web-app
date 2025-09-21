@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="container mt-5" style="max-width: 400px;">
+    <h2 class="mb-4 text-center">Login</h2>
+    <form method="POST" action="/login">
+        <div class="form-group mb-3">
+            <label for="email">Email address</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="password">Password</label>
+            <div class="input-group">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('password')">
+                    👁
+                </button>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-dark w-100">Login</button>
+    </form>
+    <p class="text-center mt-3">
+        Don’t have an account? <a href="/sign-up">Sign Up</a>
+    </p>
+</div>
+
+<script>
+    function togglePassword(fieldId) {
+        const field = document.getElementById(fieldId);
+        field.type = field.type === "password" ? "text" : "password";
+    }
+</script>
+{% endblock %}

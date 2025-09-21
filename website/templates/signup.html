@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}Sign Up{% endblock %}
+{% block content %}
+
+<div class="container " style="max-width: 400px;">
+    <h2 class="mb-4 text-center">Sign Up</h2>
+
+    <form method="POST">
+        <div class="mb-3">
+            <label for="email" class="form-label">Email Address</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="" required />
+        </div>
+
+        <div class="mb-3">
+            <label for="firstName" class="form-label">First Name</label>
+            <input type="text" class="form-control" id="firstName" name="firstName" placeholder="" required />
+        </div>
+
+        <div class="mb-3">
+            <label for="lastName" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="lastName" name="lastName" placeholder="" required />
+        </div>
+
+        <div class="mb-3">
+            <label for="password1" class="form-label">Password</label>
+            <div class="input-group">
+                <input type="password" class="form-control" id="password1" name="password1" placeholder="" required />
+                <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('password1')">
+                    👁
+                </button>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="password2" class="form-label">Confirm Password</label>
+            <div class="input-group">
+                <input type="password" class="form-control" id="password2" name="password2" placeholder="" required />
+                <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('password2')">
+                    👁
+                </button>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-dark w-100">Sign Up</button>
+    </form>
+
+    <p class="text-center mt-3">
+        Already have an account?
+        <a href="/login">Login</a>
+    </p>
+</div>
+
+<script>
+    function togglePassword(fieldId) {
+        const field = document.getElementById(fieldId);
+        field.type = field.type === "password" ? "text" : "password";
+    }
+</script>
+
+{% endblock %}
