@@ -1,1 +1,48 @@
-{% extends "base.html" %} {% block title %}Home{% endblock %}
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<style>
+    .cover-title {
+        font-style: italic;
+        font-weight: 100;
+        font-size: 2.5rem;
+    }
+
+    .cover-img {
+        width: 1100px;
+        height: 600px;
+        object-fit: cover;
+        margin-left: 15px;
+        max-width: 110%;
+    }
+
+    @media (max-width: 1199px) {
+        .cover-img {
+            width: 100%;
+            height: auto;
+            margin-left: 0;
+        }
+    }
+
+    @media (max-width: 991px) {
+        .cover-title {
+            font-size: 2rem;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .cover-title {
+            font-size: 1.5rem;
+        }
+    }
+</style>
+
+<div class="container-fluid text-center px-0">
+    <h1 class="cover-title mt-3">
+        Angelic - Ann Foodhaus & Catering Services
+    </h1>
+    <img src="{{ url_for('static', filename='image/Cover.jpg') }}" alt="Cover"
+        class="d-inline-block align-top mt-4 cover-img" />
+</div>
+{% endblock %}
