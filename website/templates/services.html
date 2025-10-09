@@ -21,11 +21,9 @@
         }
     }
 
-    /* === Carousel Styling === */
     .carousel-item img {
-        width: 100%;
+        width: 98%;
         height: 550px;
-        /* uniform size */
         object-fit: cover;
         border-radius: 8px;
         cursor: pointer;
@@ -60,9 +58,13 @@
         text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
     }
 
-    /* Modal styling */
+    .modal-dialog {
+        max-width: 1000px;
+    }
+
     .modal-content {
         border-radius: 10px;
+        overflow: hidden;
     }
 
     .modal-header h5 {
@@ -70,43 +72,171 @@
         color: #003A6B;
     }
 
-    .modal-body img {
+    .modal-body img.main-img {
         width: 100%;
         border-radius: 8px;
         object-fit: cover;
-        height: 300px;
+        height: 350px;
+    }
+
+    .modal-gallery {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+        gap: 10px;
+    }
+
+    .modal-gallery img {
+        width: 32%;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 6px;
+        transition: transform 0.3s ease;
+    }
+
+    .modal-gallery img:hover {
+        transform: scale(1.05);
     }
 </style>
 
 <div class="container-fluid text-center px-0">
     <div class="px-3">
-        <h1 class="section-heading mt-5 py-3">Check Our Packages</h1>
-
+        <h1 class="section-heading mt-3 mb-2">Check Our Packages</h1>
         {% set events = [
-        {'title': 'Birthday Party', 'image': 'Birthday.jpg', 'desc': 'Celebrate birthdays with fun themes, delicious
-        food, and unforgettable memories.'},
-        {'title': 'Wedding Reception', 'image': 'Wedding.jpg', 'desc': 'Elegant wedding catering with full-course meals
-        and beautiful presentation.'},
-        {'title': 'Engagement Party', 'image': 'Engagement.jpg', 'desc': 'Make your engagement extra special with a
-        romantic and elegant setup.'},
-        {'title': 'Anniversary', 'image': 'Anniversary.jpg', 'desc': 'Celebrate years of love with a cozy, well-planned
-        dining experience.'},
-        {'title': 'Christening / Baptism', 'image': 'Christening.jpg', 'desc': 'Welcome new blessings with warm,
-        family-centered catering service.'},
-        {'title': 'Graduation Celebration', 'image': 'Graduation.jpg', 'desc': 'Honor achievements with a joyful meal to
-        share with friends and family.'},
-        {'title': 'Debut / Sweet 16', 'image': 'Debut.jpg', 'desc': 'A grand setup for milestones that mark the
-        beginning of new chapters.'},
-        {'title': 'Family Reunion', 'image': 'Family.jpg', 'desc': 'Bring everyone together over a feast that feels like
-        home.'},
-        {'title': 'Housewarming', 'image': 'Housewarming.jpg', 'desc': 'Celebrate new beginnings with delicious food and
-        a cozy ambiance.'},
-        {'title': 'Retirement Party', 'image': 'Retirement.jpg', 'desc': 'End a beautiful career with a relaxed and
-        memorable celebration.'}
+        {
+        'title': 'Wedding Reception',
+        'image': 'Wedding.jpg',
+        'desc': 'Make your dream wedding unforgettable with an elegant dining experience that reflects your love story.From romantic table arrangements to sophisticated multi-course meals, we help you craft a celebration that’s as beautiful and memorable as your special day.',
+        'extra_images': ['Wedding1.jpg', 'Wedding2.jpg', 'Wedding3.jpg'],
+        'packages': [
+        'Luxurious multi-course dining options',
+        'Custom wedding menu planning',
+        'Elegant table and floral arrangements',
+        'Professional event coordinators',
+        'Full-service staff with champagne and toast setup'
+        ]
+        },
+        {
+        'title': 'Birthday Party',
+        'image': 'Birthday.jpg',
+        'desc': 'Celebrate life’s milestones with a vibrant and joyful birthday feast. Whether it’s a child’s colorful party or a classy adult gathering, our catering service provides everything you need — from themed menus to elegant table setups — ensuring that every guest enjoys a delightful experience filled with laughter and delicious food.',
+        'extra_images': ['Birthday1.jpg', 'Birthday2.jpg', 'Birthday3.jpg'],
+        'packages': [
+        'Custom-designed birthday themes and decorations',
+        'Buffet-style or plated service options',
+        'Signature desserts and birthday cake service',
+        'Interactive food stations for kids and adults',
+        'Dedicated catering team for setup and cleanup'
+        ]
+        },
+        {
+        'title': 'Engagement Party',
+        'image': 'Engagement3.jpg',
+        'desc': 'Celebrate your “Yes!” moment with an elegant engagement celebration. Our catering service creates an intimate atmosphere with personalized menu options, fine presentation, and a touch of romance perfect for family and friends.',
+        'extra_images': ['Engagement1.jpg', 'Engagement2.jpg', 'Engagement.jpg'],
+        'packages': [
+        'Romantic setup with floral and candlelight arrangements',
+        'Appetizers and wine pairing service',
+        'Custom dessert table and drinks bar',
+        'Professional waitstaff and event assistance',
+        'Flexible venue and decoration coordination'
+        ]
+        },
+        {
+        'title': 'Anniversary',
+        'image': 'Anniversary3.jpg',
+        "desc": "Celebrate years of love and companionship with a cozy yet elegant anniversary dinner. Whether it's an intimate evening or a grand family affair, our team ensures the perfect ambiance with gourmet food, fine service, and a touch of nostalgia.",
+        'extra_images': ['Anniversary1.jpg', 'Anniversary2.jpg', 'Anniversary.jpg'],
+        'packages': [
+        'Romantic dining setup for couples or families',
+        'Curated menu with signature dishes',
+        'Live music and lighting coordination',
+        'Elegant dessert platters and beverage service',
+        'Staff dedicated to personal guest experience'
+        ]
+        },
+        {
+        'title': 'Christening / Baptism',
+        'image': 'Christening2.jpg',
+        'desc': 'Welcome your little blessing with a warm and family-centered christening celebration. Our catering packages bring comfort and joy with hearty meals, friendly service, and beautiful setups that honor the sacred occasion.',
+        'extra_images': ['Christening1.jpg', 'Christening.jpg', 'Christening3.jpg'],
+        'packages': [
+        'Family-style buffet or plated meals',
+        'Kid-friendly menu options',
+        'Table styling with baptismal theme',
+        'Full catering team for setup and service',
+        'Custom cake and dessert arrangements'
+        ]
+        },
+        {
+        'title': 'Graduation Celebration',
+        'image': 'Graduation1.jpg',
+        'desc': 'Honor your achievements with a feast worthy of your success. Whether it’s a small family dinner or a big party with friends, we create an inspiring celebration with creative menus and festive energy.',
+        'extra_images': ['Graduation2.jpg', 'Graduation.jpg', 'Graduation3.jpg'],
+        'packages': [
+        'Buffet or family-style dining',
+        'Graduation-themed decorations',
+        'Live grill or carving stations',
+        'Audio setup for toasts and messages',
+        'On-site catering support team'
+        ]
+        },
+        {
+        'title': 'Corporate Party',
+        'image': 'Corporate.jpg',
+        "desc": "Celebrate professional milestones and achievements with a sophisticated corporate gathering. Whether it's an annual party, company anniversary, or client appreciation event, our catering brings refinement and excellence to the occasion — complete with exquisite cuisine, elegant presentation, and impeccable service that reflects your brand's
+        prestige.",
+        'extra_images': ['Corporate1.jpg', 'Corporate2.jpg', 'Corporate3.jpg'],
+        'packages': [
+        'Gourmet buffet or plated fine dining service',
+        'Signature cocktails and beverage station',
+        'Elegant table styling with floral and corporate-themed décor',
+        'Professional wait staff and event coordination',
+        'Audio-visual setup and ambient lighting design for formal gatherings'
+        ]
+        },
+        {
+        'title': 'Family Reunion',
+        'image': 'Family.jpg',
+        'desc': 'Bring generations together over a feast that feels like home. Our family reunion packages include comforting dishes, large-serving platters, and a welcoming setup designed for laughter, bonding, and great memories.',
+        'extra_images': ['Family1.jpg', 'Family2.jpg', 'Family3.png'],
+        'packages': [
+        'Home-style buffet menu options',
+        'Spacious table setups for large gatherings',
+        'Flexible indoor or outdoor arrangements',
+        'Interactive live cooking stations',
+        'On-site staff for seamless event flow'
+        ]
+        },
+        {
+        'title': 'Housewarming',
+        'image': 'Housewarming.jpg',
+        'desc': 'Celebrate your new beginnings with a warm and cozy housewarming party. Enjoy delightful meals, relaxed vibes, and elegant presentation to make your guests feel right at home.',
+        'extra_images': ['Housewarming1.jpg', 'Housewarming2.jpg', 'Housewarming3.png'],
+        'packages': [
+        'Buffet or cocktail-style setup',
+        'Elegant housewarming décor and tableware',
+        'Beverage and refreshment bar',
+        'Optional chef-on-site experience',
+        'Staff assistance for serving and cleanup'
+        ]
+        },
+        {
+        'title': 'Retirement Party',
+        'image': 'Retirement.jpg',
+        'desc': 'Honor a lifetime of hard work with a meaningful retirement celebration. Our catering service provides a comfortable, joyful atmosphere filled with gourmet food, toasts, and good company.',
+        'extra_images': ['Retirement1.jpg', 'Retirement2.jpg', 'Retirement3.jpg'],
+        'packages': [
+        'Fine dining or buffet-style options',
+        'Personalized menu reflecting favorite dishes',
+        'Table styling with gold and ivory tones',
+        'Full-service waitstaff and bar service',
+        'Custom appreciation cake and dessert setup'
+        ]
+        }
         ] %}
     </div>
 
-    <!-- === Carousel === -->
     <div id="eventCarousel" class="carousel slide mt-4" data-ride="carousel">
         <ol class="carousel-indicators">
             {% for event in events %}
@@ -139,28 +269,35 @@
     </div>
 </div>
 
-<!-- === Modals for each event === -->
 {% for event in events %}
 <div class="modal fade" id="modal{{ loop.index }}" tabindex="-1" role="dialog"
     aria-labelledby="modalLabel{{ loop.index }}" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content px-4 py-3">
             <div class="modal-header">
                 <h5 class="modal-title" id="modalLabel{{ loop.index }}">{{ event.title }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+
             <div class="modal-body text-start">
-                <img src="{{ url_for('static', filename='image/' ~ event.image) }}" alt="{{ event.title }}">
-                <p class="mt-3">{{ event.desc }}</p>
-                <p><strong>Package Includes:</strong></p>
+                <img src="{{ url_for('static', filename='image/' ~ event.image) }}" alt="{{ event.title }}"
+                    class="w-100 mb-3 rounded" style="height: 320px; object-fit: cover;">
+
+                <div class="d-flex justify-content-between gap-2 mb-4 flex-wrap" style="gap: 10px;">
+                    {% for img in event.extra_images %}
+                    <img src="{{ url_for('static', filename='image/' ~ img) }}" alt="Extra {{ loop.index }}"
+                        class="rounded flex-fill" style="height: 160px; object-fit: cover; min-width: 30%;">
+                    {% endfor %}
+                </div>
+
+                <p class="mb-3">{{ event.desc }}</p>
+                <h6 class="font-weight-bold mb-2">Package Highlights:</h6>
                 <ul>
-                    <li>Buffet-style or plated service</li>
-                    <li>Customizable menu options</li>
-                    <li>Table setup & decorations</li>
-                    <li>Professional catering staff</li>
-                    <li>Free consultation for event planning</li>
+                    {% for item in event.packages %}
+                    <li>{{ item }}</li>
+                    {% endfor %}
                 </ul>
             </div>
         </div>
