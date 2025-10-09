@@ -1,1 +1,170 @@
-{% extends "base.html" %} {% block title %}Services{% endblock %}
+{% extends "base.html" %}
+{% block title %}Services{% endblock %}
+
+{% block content %}
+<style>
+    .section-heading {
+        font-weight: 300;
+        font-size: 1.8rem;
+        text-align: start;
+    }
+
+    @media (max-width: 768px) {
+        .section-heading {
+            font-size: 1.5rem;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .section-heading {
+            font-size: 1.2rem;
+        }
+    }
+
+    /* === Carousel Styling === */
+    .carousel-item img {
+        width: 100%;
+        height: 550px;
+        /* uniform size */
+        object-fit: cover;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+    }
+
+    .carousel-item img:hover {
+        transform: scale(1.03);
+        opacity: 0.9;
+    }
+
+    @media (max-width: 768px) {
+        .carousel-item img {
+            height: 350px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .carousel-item img {
+            height: 250px;
+        }
+    }
+
+    .carousel-caption h5 {
+        font-weight: 600;
+        color: #fff;
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+    }
+
+    .carousel-caption p {
+        color: #f8f9fa;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Modal styling */
+    .modal-content {
+        border-radius: 10px;
+    }
+
+    .modal-header h5 {
+        font-weight: 600;
+        color: #003A6B;
+    }
+
+    .modal-body img {
+        width: 100%;
+        border-radius: 8px;
+        object-fit: cover;
+        height: 300px;
+    }
+</style>
+
+<div class="container-fluid text-center px-0">
+    <div class="px-3">
+        <h1 class="section-heading mt-5 py-3">Check Our Packages</h1>
+
+        {% set events = [
+        {'title': 'Birthday Party', 'image': 'Birthday.jpg', 'desc': 'Celebrate birthdays with fun themes, delicious
+        food, and unforgettable memories.'},
+        {'title': 'Wedding Reception', 'image': 'Wedding.jpg', 'desc': 'Elegant wedding catering with full-course meals
+        and beautiful presentation.'},
+        {'title': 'Engagement Party', 'image': 'Engagement.jpg', 'desc': 'Make your engagement extra special with a
+        romantic and elegant setup.'},
+        {'title': 'Anniversary', 'image': 'Anniversary.jpg', 'desc': 'Celebrate years of love with a cozy, well-planned
+        dining experience.'},
+        {'title': 'Christening / Baptism', 'image': 'Christening.jpg', 'desc': 'Welcome new blessings with warm,
+        family-centered catering service.'},
+        {'title': 'Graduation Celebration', 'image': 'Graduation.jpg', 'desc': 'Honor achievements with a joyful meal to
+        share with friends and family.'},
+        {'title': 'Debut / Sweet 16', 'image': 'Debut.jpg', 'desc': 'A grand setup for milestones that mark the
+        beginning of new chapters.'},
+        {'title': 'Family Reunion', 'image': 'Family.jpg', 'desc': 'Bring everyone together over a feast that feels like
+        home.'},
+        {'title': 'Housewarming', 'image': 'Housewarming.jpg', 'desc': 'Celebrate new beginnings with delicious food and
+        a cozy ambiance.'},
+        {'title': 'Retirement Party', 'image': 'Retirement.jpg', 'desc': 'End a beautiful career with a relaxed and
+        memorable celebration.'}
+        ] %}
+    </div>
+
+    <!-- === Carousel === -->
+    <div id="eventCarousel" class="carousel slide mt-4" data-ride="carousel">
+        <ol class="carousel-indicators">
+            {% for event in events %}
+            <li data-target="#eventCarousel" data-slide-to="{{ loop.index0 }}"
+                class="{% if loop.first %}active{% endif %}"></li>
+            {% endfor %}
+        </ol>
+
+        <div class="carousel-inner">
+            {% for event in events %}
+            <div class="carousel-item {% if loop.first %}active{% endif %}">
+                <img src="{{ url_for('static', filename='image/' ~ event.image) }}" alt="{{ event.title }}"
+                    data-toggle="modal" data-target="#modal{{ loop.index }}">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>{{ event.title }}</h5>
+                    <p>{{ event.desc }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <a class="carousel-control-prev" href="#eventCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#eventCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+
+<!-- === Modals for each event === -->
+{% for event in events %}
+<div class="modal fade" id="modal{{ loop.index }}" tabindex="-1" role="dialog"
+    aria-labelledby="modalLabel{{ loop.index }}" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel{{ loop.index }}">{{ event.title }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-start">
+                <img src="{{ url_for('static', filename='image/' ~ event.image) }}" alt="{{ event.title }}">
+                <p class="mt-3">{{ event.desc }}</p>
+                <p><strong>Package Includes:</strong></p>
+                <ul>
+                    <li>Buffet-style or plated service</li>
+                    <li>Customizable menu options</li>
+                    <li>Table setup & decorations</li>
+                    <li>Professional catering staff</li>
+                    <li>Free consultation for event planning</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}
