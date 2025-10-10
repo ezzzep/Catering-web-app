@@ -2,119 +2,7 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<style>
-    .cover-title {
-        font-style: italic;
-        font-weight: 100;
-        font-size: 2.5rem;
-    }
-
-    .cover-img {
-        width: 1100px;
-        height: 600px;
-        object-fit: cover;
-        margin-left: 15px;
-        max-width: 110%;
-    }
-
-    @media (max-width: 1199px) {
-        .cover-img {
-            width: 100%;
-            height: auto;
-            margin-left: 0;
-        }
-    }
-
-    @media (max-width: 991px) {
-        .cover-title {
-            font-size: 2rem;
-        }
-    }
-
-    @media (max-width: 576px) {
-        .cover-title {
-            font-size: 1.5rem;
-        }
-    }
-
-    .offer-img {
-        width: 105%;
-        height: 350px;
-        object-fit: cover;
-        border-radius: 8px;
-    }
-
-    .offer-container {
-        display: flex;
-        justify-content: start;
-        flex-wrap: wrap;
-        gap: 70px;
-        max-width: 1100px;
-        margin: 0 auto;
-    }
-
-    .offer-card {
-        flex: 1 1 45%;
-        max-width: 500px;
-        text-align: start;
-    }
-
-    .offer-title {
-        font-weight: 600;
-        margin-top: 25px;
-        font-size: 1.8rem;
-        color: #003A6B;
-    }
-
-    .offer-desc {
-        font-weight: 300;
-        font-size: 1.2rem;
-        margin-top: 15px;
-        color: #000000;
-    }
-
-    @media (max-width: 768px) {
-        .offer-card {
-            flex: 1 1 100%;
-        }
-    }
-
-    .nav-service {
-        font-weight: 100;
-        font-size: 2rem;
-        text-align: start;
-    }
-
-    @media (max-width: 991px) {
-        .nav-service {
-            font-size: 2rem;
-        }
-    }
-
-    @media (max-width: 576px) {
-        .nav-service {
-            font-size: 1.5rem;
-        }
-    }
-    .explore-btn {
-        display: inline-block;
-        padding: 10px 25px;
-        font-size: 1.1rem;
-        background-color: #003A6B;
-        color: white;
-        border: none;
-        border-radius: 6px;
-        transition: background-color 0.3s ease;
-        text-decoration: none;
-    }
-
-    .explore-btn:hover {
-        background-color: #005299;
-        color: #fff;
-        text-decoration: none;
-    }
-</style>
-
+<link rel="stylesheet" href="{{ url_for('static', filename='style/home.css') }}">
 <div class="container-fluid text-center px-0">
     <h1 class="cover-title mt-2 py-3">
         Angelic - Ann Foodhaus & Catering Services
@@ -125,40 +13,49 @@
         <h1 class="my-4 font-weight-light">What We Offer</h1>
         <div class="offer-container mt-5">
             <div class="offer-card">
-                <img src="{{ url_for('static', filename='image/Birthday.jpg') }}" alt="Offer 1" class="offer-img">
+                <img src="{{ url_for('static', filename='image/Birthday.jpg') }}" alt="Birthday Party"
+                    class="offer-img">
                 <h2 class="offer-title">Birthday Party</h2>
                 <p class="offer-desc">
-                    Make birthdays extra special with customized menus, cakes, and fun party food. From kids’ favorites to elegant adult celebrations, we serve dishes that match the theme and mood.
+                    Make birthdays extra special with customized menus, cakes, and fun party food.
+                    From kids’ favorites to elegant adult celebrations, we serve dishes that match
+                    the theme and mood.
                 </p>
             </div>
             <div class="offer-card">
-                <img src="{{ url_for('static', filename='image/Wedding.jpg') }}" alt="Offer 2" class="offer-img">
+                <img src="{{ url_for('static', filename='image/Wedding.jpg') }}" alt="Wedding Reception"
+                    class="offer-img">
                 <h2 class="offer-title">Wedding Reception</h2>
                 <p class="offer-desc">
-                Celebrate your big day with a grand feast. We provide full-course meals, buffet setups, or plated dining with elegant presentation to make weddings unforgettable.
+                    Celebrate your big day with a grand feast. We provide full-course meals, buffet setups,
+                    or plated dining with elegant presentation to make weddings unforgettable.
                 </p>
             </div>
             <div class="offer-card">
-                <img src="{{ url_for('static', filename='image/Christening2.jpg') }}" alt="Offer 1" class="offer-img">
-                <h2 class="offer-title">Christening/Baptism</h2>
+                <img src="{{ url_for('static', filename='image/Christening2.jpg') }}" alt="Christening/Baptism"
+                    class="offer-img">
+                <h2 class="offer-title">Christening / Baptism</h2>
                 <p class="offer-desc">
-                    Celebrate this special milestone with a warm, family-style feast. We offer delicious dishes and elegant setups to makeyour child's christening memorable and meaningful
+                    Celebrate this special milestone with a warm, family-style feast. We offer delicious
+                    dishes and elegant setups to make your child's christening memorable and meaningful.
                 </p>
             </div>
             <div class="offer-card">
-                <img src="{{ url_for('static', filename='image/Graduation1.jpg') }}" alt="Offer 2" class="offer-img">
+                <img src="{{ url_for('static', filename='image/Graduation1.jpg') }}" alt="Graduation Celebration"
+                    class="offer-img">
                 <h2 class="offer-title">Graduation Celebration</h2>
                 <p class="offer-desc">
-                    Celebrate academic milestones with a festive spread. Our graduation menus feature crowd-pleasing dishes perfect for friends, families, and classmates
+                    Celebrate academic milestones with a festive spread. Our graduation menus feature
+                    crowd-pleasing dishes perfect for friends, families, and classmates.
                 </p>
             </div>
         </div>
-      <h1 class="nav-service mt-5 py-3">
-        Looking for more? Explore all our services
-      </h1>
-     <div style="text-align: start;">
-        <a href="/services" class="explore-btn">See All Services</a>
-     </div>
+        <h1 class="nav-service mt-5 py-3">
+            Looking for more? Explore all our services
+        </h1>
+        <div style="text-align: start;">
+            <a href="/services" class="explore-btn">See All Services</a>
+        </div>
     </div>
 </div>
 {% endblock %}
