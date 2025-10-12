@@ -279,3 +279,21 @@
         font-size: 1rem;
     }
 }
+
+.explore-btn {
+    display: inline-block;
+    padding: 10px 25px;
+    font-size: 1.1rem;
+    background-color: #003A6B;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+}
+
+.explore-btn:hover {
+    background-color: #005299;
+    color: #fff;
+    text-decoration: none;
+}
