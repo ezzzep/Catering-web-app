@@ -1,94 +1,281 @@
- .section-heading {
-     font-weight: 300;
-     font-size: 1.8rem;
-     text-align: start;
- }
+.catering-banner {
+    width: 100%;
+    height: 85vh;
+    object-fit: fit;
+    object-position: center;
+    display: block;
+}
 
- @media (max-width: 768px) {
-     .section-heading {
-         font-size: 1.5rem;
-     }
- }
+@media (max-width: 768px) {
+    .catering-banner {
+        height: 40vh;
+    }
+}
 
- @media (max-width: 576px) {
-     .section-heading {
-         font-size: 1.2rem;
-     }
- }
+.section-heading {
+    font-weight: 300;
+    font-size: 2.5rem;
+    text-align: center;
+}
 
- .carousel-item img {
-     width: 98%;
-     height: 550px;
-     object-fit: cover;
-     border-radius: 8px;
-     cursor: pointer;
-     transition: transform 0.3s ease;
- }
+@media (max-width: 992px) {
+    .section-heading {
+        font-size: 1.7rem;
+        margin: 60px 0 30px 0;
+    }
+}
 
- .carousel-item img:hover {
-     transform: scale(1.03);
-     opacity: 0.9;
- }
+@media (max-width: 768px) {
+    .section-heading {
+        font-size: 1.4rem;
+        text-align: center;
+        margin: 50px 0 25px 0;
+    }
+}
 
- @media (max-width: 768px) {
-     .carousel-item img {
-         height: 350px;
-     }
- }
+@media (max-width: 576px) {
+    .section-heading {
+        font-size: 1.2rem;
+        margin: 40px 0 20px 0;
+    }
+}
 
- @media (max-width: 576px) {
-     .carousel-item img {
-         height: 250px;
-     }
- }
+.carousel-item img {
+    width: 100%;
+    height: 550px;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
 
- .carousel-caption h5 {
-     font-weight: 600;
-     color: #fff;
-     text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
- }
+.carousel-item img:hover {
+    transform: scale(1.03);
+    opacity: 0.9;
+}
 
- .carousel-caption p {
-     color: #f8f9fa;
-     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
- }
+@media (max-width: 992px) {
+    .carousel-item img {
+        height: 400px;
+    }
+}
 
- .modal-dialog {
-     max-width: 1000px;
- }
+@media (max-width: 768px) {
+    .carousel-item img {
+        height: 300px;
+    }
+}
 
- .modal-content {
-     border-radius: 10px;
-     overflow: hidden;
- }
+@media (max-width: 576px) {
+    .carousel-item img {
+        height: 220px;
+    }
+}
 
- .modal-header h5 {
-     font-weight: 600;
-     color: #003A6B;
- }
+.carousel-caption h5 {
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+}
 
- .modal-body img.main-img {
-     width: 100%;
-     border-radius: 8px;
-     object-fit: cover;
-     height: 350px;
- }
+.carousel-caption p {
+    color: #f8f9fa;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
 
- .modal-gallery {
-     display: flex;
-     justify-content: space-between;
-     margin-top: 20px;
-     gap: 10px;
- }
+.modal-dialog {
+    max-width: 1000px;
+}
 
- .modal-gallery img {
-     width: 32%;
-     height: 120px;
-     object-fit: cover;
-     border-radius: 6px;
-     transition: transform 0.3s ease;
- }
+@media (max-width: 768px) {
+    .modal-dialog {
+        max-width: 95%;
+        margin: 0 auto;
+    }
+}
 
- .modal-gallery img:hover {
-     transform: scale(1.05);
- }
+.modal-content {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.modal-header h5 {
+    font-weight: 600;
+    color: #003A6B;
+}
+
+.modal-body img.main-img {
+    width: 100%;
+    border-radius: 8px;
+    object-fit: cover;
+    height: 350px;
+}
+
+@media (max-width: 768px) {
+    .modal-body img.main-img {
+        height: 250px;
+    }
+}
+
+.modal-gallery {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.modal-gallery img {
+    width: 32%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 6px;
+    transition: transform 0.3s ease;
+}
+
+.modal-gallery img:hover {
+    transform: scale(1.05);
+}
+
+@media (max-width: 576px) {
+    .modal-gallery img {
+        width: 100%;
+        height: 150px;
+    }
+}
+
+.best-picks {
+    font-weight: 350;
+    font-size: 2rem;
+    margin: 50px 0 10px 0;
+    color: #003A6B;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .best-picks {
+        font-size: 1.6rem;
+        margin: 40px 0 20px 0;
+    }
+}
+
+@media (max-width: 576px) {
+    .greetings {
+        font-size: 1.6rem;
+    }
+}
+
+.food-carousel {
+    transition: all 0.3s ease;
+}
+
+.btn-outline-primary {
+    background-color: #003A6B !important;
+    color: white !important;
+    border: 1px solid #003A6B !important;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-primary:hover {
+    background-color: #002C52 !important;
+    color: white !important;
+}
+
+.btn-outline-primary.active,
+.btn-outline-primary:focus {
+    background-color: white !important;
+    color: #003A6B !important;
+    border-color: #003A6B !important;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #003A6B;
+    border-radius: 50px;
+    padding: 12px 30px;
+    margin: 30px auto;
+    width: fit-content;
+    max-width: 90%;
+    flex-wrap: wrap;
+}
+
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+@media (max-width: 768px) {
+    .button-container {
+        padding: 10px 20px;
+        border-radius: 40px;
+    }
+
+    .button-group {
+        gap: 6px;
+    }
+
+    .btn-outline-primary {
+        font-size: 0.9rem;
+        padding: 6px 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .button-container {
+        flex-direction: column;
+        border-radius: 25px;
+        padding: 10px 12px;
+    }
+
+    .btn-outline-primary {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+.card {
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+    margin-bottom: 15px;
+}
+
+.card:hover {
+    transform: scale(1.03);
+}
+
+.card img {
+    height: 160px;
+    object-fit: cover;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+@media (max-width: 768px) {
+    .card img {
+        height: 130px;
+    }
+}
+
+@media (max-width: 576px) {
+    .card img {
+        height: 110px;
+    }
+}
+
+.choose {
+    font-weight: 250;
+    font-size: 1.2rem;
+    margin-top: 5px;
+    color: black;
+    text-align: center;
+}
+
+@media (max-width: 576px) {
+    .choose {
+        font-size: 1rem;
+    }
+}

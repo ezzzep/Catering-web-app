@@ -3,9 +3,12 @@
 
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='style/services.css') }}">
-<div class="container-fluid text-center px-0">
+    <div class="hero-wrapper">
+        <img src="{{ url_for('static', filename='image/catering.jpg') }}" alt="Catering Packages" class="catering-banner" />
+    </div>
+<div class="container-fluid text-center">
     <div class="px-3">
-        <h1 class="section-heading mt-3 mb-2">Check Our Packages</h1>
+        <h1 class="section-heading my-5 mb-2">Check Our Packages</h1>
         {% set events = [
         {
         'title': 'Wedding Reception',
@@ -171,6 +174,56 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
+    <h1 class="best-picks">Choose your best picks</h1>
+    <h1 class="choose">(Choose One Each Category)</h1>
+        <div class="button-container" id="categoryButtons">
+            <div class="button-group">
+                <button type="button" class="btn btn-outline-primary active" data-category="beef">Beef</button>
+                <button type="button" class="btn btn-outline-primary" data-category="chicken">Chicken</button>
+                <button type="button" class="btn btn-outline-primary" data-category="pork">Pork</button>
+                <button type="button" class="btn btn-outline-primary" data-category="seafood">Seafood</button>
+                <button type="button" class="btn btn-outline-primary" data-category="pasta">Pasta</button>
+                <button type="button" class="btn btn-outline-primary" data-category="dessert">Dessert</button>
+                <button type="button" class="btn btn-outline-primary" data-category="other">Other</button>
+            </div>
+        </div>
+        {% include "_food_carousels.html" %}
+    </div>
+       <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const buttonsContainer = document.getElementById('categoryButtons') || document.querySelector('.button-group');
+            if (!buttonsContainer) return;
+            const buttons = buttonsContainer.querySelectorAll('button[data-category]');
+            const carousels = document.querySelectorAll('.food-carousel');
+            if (!carousels.length || !buttons.length) return;
+            function showCategory(category) {
+                carousels.forEach(c => {
+                    if (c.id === `${category}Carousel`) {
+                        c.classList.remove('d-none');
+                    } else {
+                        c.classList.add('d-none');
+                    }
+                });
+            }
+            const activeBtn = buttonsContainer.querySelector('button.active') || buttons[0];
+            if (activeBtn) {
+                const initialCategory = activeBtn.dataset.category || 'beef';
+                buttons.forEach(b => b.classList.remove('active'));
+                activeBtn.classList.add('active');
+                showCategory(initialCategory);
+            }
+            buttons.forEach(btn => {
+                btn.addEventListener('click', function () {
+                    buttons.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    const selected = this.dataset.category;
+                    if (selected) showCategory(selected);
+                });
+            });
+        });
+    </script>
+    </div>
+</div>
 </div>
 
 {% for event in events %}
@@ -207,5 +260,6 @@
         </div>
     </div>
 </div>
+
 {% endfor %}
 {% endblock %}
